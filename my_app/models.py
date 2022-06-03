@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Trainer(models.Model):
     name = models.CharField(max_length=255)
@@ -22,3 +23,5 @@ class Doubts(models.Model):
     answer_by = models.ForeignKey(Trainer, on_delete=models.CASCADE)
     when_asked = models.DateTimeField(auto_now_add=True)
     result = models.CharField(max_length=20)
+
+

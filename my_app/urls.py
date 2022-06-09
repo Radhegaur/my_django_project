@@ -5,10 +5,15 @@ from . import views
 
 urlpatterns = [
     
-    path('trainers/', views.trainer_post),
-    path ('trainers/<int:id>/', views.trainer_api),
-    path('trainee/<int:id>/', views.trainee_api),
-    path('doubts/<int:id>/', views.doubts_api),
+    # path('trainers/', views.trainer_post),
+    # path('doubts/', views.doubts_post),
+    # path ('trainers/<int:id>/', views.trainer_api),
+    # path('trainee/<int:id>/', views.trainee_api),
+    # path('doubts/<int:id>/', views.doubts_api),
+    path('classviewtrainer/',views.Trainers.as_view()),
+    path('classviewtrainee/',views.Trainees.as_view()),
+    path('classviewdoubt/',views.Doubt.as_view()),
+
 
     
 ]

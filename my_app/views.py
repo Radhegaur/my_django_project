@@ -21,7 +21,7 @@ from my_app.serializers import TraineeSerializer, TrainerSerializer,DoubtsSerial
 
 
 
-
+#class based api view 
 class Trainers(APIView):
     def get(self,request):
         queryset = Trainer.objects.all()

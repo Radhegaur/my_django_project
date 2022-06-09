@@ -3,68 +3,101 @@
 # from my_app.models import Trainer,Trainee,Doubts
 # from my_app.models import Doubts
 # from .serializers import TrainerSerializer
-# from .models import Trainee, Trainer,Doubts
-# from rest_framework.decorators import api_view
+from .models import Trainee, Trainer,Doubts
+from rest_framework.decorators import api_view
 # from django.http import HttpResponse 
 
 
-from rest_framework.decorators import api_view
+# from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.generics import ListCreateAPIView
 
-from django.shortcuts import get_object_or_404
+# from django.shortcuts import get_object_or_404
 from my_app import serializers
 
 from my_app.models import Trainer,Trainee,Doubts
 from my_app.serializers import TraineeSerializer, TrainerSerializer,DoubtsSerializer
 
 
-
-#class based api view 
-class Trainers(APIView):
-    def get(self,request):
-        queryset = Trainer.objects.all()
-        serializer = TrainerSerializer(queryset,many=True)
-        return Response(serializer.data)
-    def post(self,request):
-        serializer = TrainerSerializer( data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    def put(self,request):
-        serializer = TrainerSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-    def delete(self,request):
-        trainer=TrainerSerializer(data=request.data)
-        trainer.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-class Trainees(APIView):
-    def get(self,request):
-        queryset = Trainee.objects.all()
-        serializer = TraineeSerializer(queryset,many=True)
-        return Response(serializer.data)
-    def put(self,request):
-        serializer = TraineeSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-    def post(self,request):
-        serializer = TraineeSerializer( data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    def delete(self,request):
-        trainee=TraineeSerializer(data=request.data)
-        trainee.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+# generic view
+class TrainerListCreate(ListCreateAPIView):
+    queryset = Trainer.objects.all()
+    serializer_class = TrainerSerializer
+class TraineeListCreate(ListCreateAPIView):
+    queryset = Trainee.objects.all()
+    serializer_class = TraineeSerializer
+class DoubtsListCreate(ListCreateAPIView):
+    queryset = Doubts.objects.all()
+    serializer_class = DoubtsSerializer
 
 
 
-class Doubt(APIView):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #class based api view 
+# class Trainers(APIView):
+#     def get(self,request):
+#         queryset = Trainer.objects.all()
+#         serializer = TrainerSerializer(queryset,many=True)
+#         return Response(serializer.data)
+#     def post(self,request):
+#         serializer = TrainerSerializer( data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+#     def put(self,request):
+#         serializer = TrainerSerializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response(serializer.data)
+#     def delete(self,request):
+#         trainer=TrainerSerializer(data=request.data)
+#         trainer.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+
+# class Trainees(APIView):
+#     def get(self,request):
+#         queryset = Trainee.objects.all()
+#         serializer = TraineeSerializer(queryset,many=True)
+#         return Response(serializer.data)
+#     def put(self,request):
+#         serializer = TraineeSerializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response(serializer.data)
+#     def post(self,request):
+#         serializer = TraineeSerializer( data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+#     def delete(self,request):
+#         trainee=TraineeSerializer(data=request.data)
+#         trainee.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+# class Doubt(APIView):
     def get(self,request):
         queryset = Doubts.objects.all()
         serializer = DoubtsSerializer(queryset,many=True)
